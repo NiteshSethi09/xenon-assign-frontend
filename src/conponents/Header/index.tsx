@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Heading = () => {
   const [authenticated, setAuthenticated] = useState<string | boolean>(
@@ -14,6 +15,8 @@ const Heading = () => {
     localStorage.removeItem("user_credentials");
     (window.location as any) = "/";
   };
+
+  const linkStyle = { textDecoration: "none", color: "inherit" };
   return (
     <>
       <Navbar bg="light" expand="md">
@@ -28,20 +31,36 @@ const Heading = () => {
               defaultActiveKey="/home"
             >
               <Nav.Item>
-                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link>
+                  <Link to="/" style={linkStyle}>
+                    Home
+                  </Link>
+                </Nav.Link>
               </Nav.Item>
 
               <Nav.Item>
-                <Nav.Link href="/contact-us">Contact Us</Nav.Link>
+                <Nav.Link>
+                  <Link to="/contact-us" style={linkStyle}>
+                    Contact Us
+                  </Link>
+                </Nav.Link>
               </Nav.Item>
               {!authenticated ? (
                 <>
                   <Nav.Item>
-                    <Nav.Link href="/login">Login</Nav.Link>
+                    <Nav.Link>
+                      <Link to="/login" style={linkStyle}>
+                        Login
+                      </Link>
+                    </Nav.Link>
                   </Nav.Item>
 
                   <Nav.Item>
-                    <Nav.Link href="/signup">Signup</Nav.Link>
+                    <Nav.Link>
+                      <Link to="/signup" style={linkStyle}>
+                        Signup
+                      </Link>
+                    </Nav.Link>
                   </Nav.Item>
                 </>
               ) : (
